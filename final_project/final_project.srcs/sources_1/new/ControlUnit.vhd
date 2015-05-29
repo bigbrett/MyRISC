@@ -129,6 +129,7 @@ begin
 		
 		when sIDLE =>
 			next_state <= sWAIT;
+			
 		when sWAIT =>
 			next_state <= sFETCH;
 			
