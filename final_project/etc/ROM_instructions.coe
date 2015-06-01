@@ -1,0 +1,63 @@
+; Instruction Memory  block ROM, created 29-May-2015 15:18:10
+;
+; Command  |  Opcode  |  Definition  	|  Operation
+; ---------|----------|-----------------|---------------------------
+;   NOP	   |   0000   |  No operation	|
+;   LDR	   |   0001   |  Load Direct    | Ra <= M[d]
+;   STR    |   0010   |  Store Direct   | M[d] <= Ra 
+;   MOV    |   0011   |  Move 		| Ra <= Rb
+;   LDC    |   0100   |  Load Constant  | Ra <= d
+;   ADD    |   0101   |  Add 		| Ra <= Rb + Rc
+;   SUB    |   0110   |  Subtract 	| Ra <= Rb - Rc
+;   JZ     |   0111   |  Jump if Zero   | if(Ra=0) then Pc<=Pc+d+1
+;   JD     |   1000   |  Jump Direct 	| Pc <= d
+;-------------------------------------------------------------------
+; 16-bit instruction format: x"XXXX"
+; 	<Opcode> <Ra> <Rb> <Rc>
+; 	<Opcode> <Ra> <   d   >      
+;-------------------------------------------------------------------
+; Example Commands: 
+;	LDC r1, x"6"
+;	LDC r2, x"3"
+;	JZ  r2, x"4" 
+;	ADD r3, r2, r1
+; 	STR r3, M[00000001]
+; 	STR r2, M[00000010]
+; 	LDR r1, M[00000010]
+; 	SUB r3, r2, r1
+;	JZ  r3, x"2"
+; 	ADD r2, r1, r3
+; 	LDC r4, x"5"
+;	LDC r4, x"A"
+;	LDC r0, x"5"
+;	LDC r1, x"1"
+; 	SUB r0, r0, r1
+;	JZ  r0, 1
+;	JD  0, 14
+; 	NOP 0, 0
+;	MOV r2, r1
+;----------------------------
+;----------------------------
+;BEGIN 
+;
+MEMORY_INITIALIZATION_RADIX=16;
+MEMORY_INITIALIZATION_VECTOR=
+4106, 
+4203,
+7204,
+5321,
+2301,
+2202,
+1102,
+6321,
+7302,
+5213,
+4405,
+440A,
+4005,
+4101,
+6001,
+7001,
+800E,
+0000,
+3210;

@@ -48,7 +48,7 @@ architecture Behavioral of Datapath is
 
 	-- Structure for register file
 	type Register_File is array(0 to 15) of std_logic_vector(15 downto 0);
-		signal L_RF_Register	: Register_File;
+		signal L_RF_Register	: Register_File := (others => (others => '0'));
 	
 	
 	signal L_RF_Preg_data	: unsigned(15 downto 0) := x"0000";

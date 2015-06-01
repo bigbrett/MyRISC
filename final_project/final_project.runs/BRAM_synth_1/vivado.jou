@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2014.4 (64-bit)
+# SW Build 1071353 on Tue Nov 18 18:29:27 MST 2014
+# IP Build 1070531 on Tue Nov 18 01:10:18 MST 2014
+# Start of session at: Thu May 28 18:56:17 2015
+# Process ID: 1068
+# Log file: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/BRAM_synth_1/BRAM.vds
+# Journal file: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/BRAM_synth_1\vivado.jou
+#-----------------------------------------------------------
+source BRAM.tcl

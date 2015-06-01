@@ -55,6 +55,7 @@ architecture Behavioral of ControlUnit is
 	signal L_PC_ld			: std_logic := '0';							-- PC load from IR offset
 	signal L_PC_clr			: std_logic := '0';							-- clear the PC
 	signal L_PC_inc			: std_logic := '0';							-- increment the PC
+	signal L_PC_dir			: std_logic := '0';							-- PC jump to direct address
 	signal L_PC_offset		: unsigned (7 downto 0) := x"00";			-- PC offset value from IR
 	
 	-- Signals for Instruction Register
@@ -63,7 +64,7 @@ architecture Behavioral of ControlUnit is
 	signal L_IR_Opcode		: std_logic_vector (3 downto 0);
 	
 	-- State Machine signals
-	type state_type is (sIDLE, sWAIT, sPC_INC, sPC_JUMP, sFETCH, sDECODE, sLOAD, sSTORE, sADD, sCONST, sSUB, sJZ);
+	type state_type is (sIDLE, sWAIT, sPC_INC, sPC_DIRECT, sPC_JUMP, sFETCH, sDECODE, sLOAD, sSTORE, sMOVE, sCONST, sADD, sSUB, sJZ, sJD, sNO_OP);
 	signal current_state, next_state : state_type := sIDLE;
 	
 begin
@@ -76,7 +77,7 @@ L_IR_Opcode <= L_IR_data(15 downto 12);
 Q_instROM_addr <= std_logic_vector(L_PC_count);				
 Q_M_addr <= L_IR_data(7 downto 0);
 Q_RF_Wreg_addr <= L_IR_data(11 downto 8);
-Q_RF_Preg_addr <= L_IR_data(11 downto 8) when ( L_IR_opcode = ("0101" or "0001") ) else L_IR_data(7 downto 4);
+Q_RF_Preg_addr <= L_IR_data(11 downto 8) when (L_IR_opcode = x"7") or (L_IR_opcode = x"2") else L_IR_data(7 downto 4);
 Q_RF_Qreg_addr <= L_IR_data(3 downto 0);
 
 
@@ -85,8 +86,10 @@ begin
 	if rising_edge(clk) then
 		if ( L_PC_clr = '1' ) then
 			L_PC_count <= x"0000";
+		elsif ( L_PC_dir = '1' ) then
+			L_PC_count <= x"00" & L_PC_offset;
 		elsif ( L_PC_ld = '1' ) then
-			L_PC_count <= L_PC_count + L_PC_offset;
+			L_PC_count <= L_PC_count + 1 + L_PC_offset;
 		elsif ( L_PC_inc = '1' ) then
 			L_PC_count <= L_PC_count + 1;
 		end if;
@@ -118,6 +121,7 @@ begin
 	L_IR_ld <= '0';
 	L_PC_inc <= '0';
 	L_PC_ld <= '0';
+	L_PC_dir <= '0';
 	Q_RF_Preg_rd <= '0';
 	Q_RF_Qreg_rd <= '0';
 	Q_RF_Wreg_sel <= "00";
@@ -142,12 +146,15 @@ begin
 			Q_RF_Qreg_rd <= '1';
 			
 			case L_IR_Opcode is
-				when "0000" => next_state <= sLOAD;
-				when "0001" => next_state <= sSTORE;
-				when "0010" => next_state <= sADD;
-				when "0011" => next_state <= sCONST;
-				when "0100" => next_state <= sSUB;
-				when "0101" => next_state <= sJZ;
+				when x"0" => next_state <= sNO_OP;
+				when x"1" => next_state <= sLOAD;
+				when x"2" => next_state <= sSTORE;
+				when x"3" => next_state <= sMOVE;
+				when x"4" => next_state <= sCONST;
+				when x"5" => next_state <= sADD;
+				when x"6" => next_state <= sSUB;
+				when x"7" => next_state <= sJZ;
+				when x"8" => next_state <= sJD;
 				when others => next_state <= sPC_INC;
 			end case;
 		
@@ -160,9 +167,7 @@ begin
 			Q_M_wr <= '1';
 			next_state <= sPC_INC;
 			
-		when sADD =>
-			Q_ALU_sel <= "01";
-			Q_RF_Wreg_sel <= "00";
+		when sMOVE =>
 			Q_RF_Wreg_wr <= '1';
 			next_state <= sPC_INC;
 		
@@ -171,9 +176,13 @@ begin
 			Q_RF_Wreg_wr <= '1';
 			next_state <= sPC_INC;
 			
+		when sADD =>
+			Q_ALU_sel <= "01";
+			Q_RF_Wreg_wr <= '1';
+			next_state <= sPC_INC;
+			
 		when sSUB =>
 			Q_ALU_sel <= "10";
-			Q_RF_Wreg_sel <= "00";
 			Q_RF_Wreg_wr <= '1';
 			next_state <= sPC_INC;
 			
@@ -184,6 +193,12 @@ begin
 				next_state <= sPC_INC;
 			end if;
 			
+		when sJD =>
+			next_state <= sPC_DIRECT;
+			
+		when sNO_OP =>
+			next_state <= sPC_INC;
+			
 		when sPC_INC =>
 			L_PC_inc <= '1';
 			next_state <= sWAIT;
@@ -192,7 +207,10 @@ begin
 			L_PC_ld <= '1';
 			next_state <= sWAIT;
 			
-		
+		when sPC_DIRECT =>
+			L_PC_dir <= '1';
+			next_state <= sWAIT;
+			
 		when others =>
 			next_state <= sPC_INC;
 	end case;
