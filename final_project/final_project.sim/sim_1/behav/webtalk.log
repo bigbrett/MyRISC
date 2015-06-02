@@ -2,11 +2,15 @@
 # Webtalk v2014.4 (64-bit)
 # SW Build 1071353 on Tue Nov 18 18:29:27 MST 2014
 # IP Build 1070531 on Tue Nov 18 01:10:18 MST 2014
-# Start of session at: Fri May 29 17:49:43 2015
-# Process ID: 5508
+# Start of session at: Mon Jun 01 19:18:51 2015
+# Process ID: 4508
 # Log file: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.sim/sim_1/behav/webtalk.log
 # Journal file: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.sim/sim_1/behav\webtalk.jou
 #-----------------------------------------------------------
 source P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.sim/sim_1/behav/xsim.dir/myRISC_TB_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.sim/sim_1/behav/xsim.dir/myRISC_TB_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri May 29 17:49:48 2015. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2014.4/doc/webtalk_introduction.html.
-INFO: [Common 17-206] Exiting Webtalk at Fri May 29 17:49:48 2015...
+webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 66.125 ; gain = 0.027
+
+    while executing
+"webtalk_transmit -clientid 4128449813 -regid "210643936_1777485687_210562918_123" -xml P:/15spring/engs128/workspace/Brett_and_Matt/final_project/fina..."
+    (file "P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.sim/sim_1/behav/xsim.dir/myRISC_TB_behav/webtalk/xsim_webtalk.t..." line 41)
+INFO: [Common 17-206] Exiting Webtalk at Mon Jun 01 19:18:56 2015...

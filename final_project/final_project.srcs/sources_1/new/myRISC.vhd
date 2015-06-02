@@ -104,8 +104,7 @@ end component;
 -- Multipuropose single-port read/write BRAM, with read priority  
 -- Read/write operations have a 2 clock cycle latency
 component BRAM
-port (
-	clka 	: in STD_LOGIC;							-- master clock
+port (	clka 	: in STD_LOGIC;							-- master clock
     	ena 	: IN STD_LOGIC; 						-- clock enable
 		wea 	: in STD_LOGIC_VECTOR(0 downto 0);		-- write enable
 		addra 	: in STD_LOGIC_VECTOR(7 downto 0);		-- read/write address
