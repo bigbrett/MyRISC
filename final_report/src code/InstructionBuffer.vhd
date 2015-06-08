@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Class: 			ENGS 128 15S
+-- Engineer: 		Brett Nicholas and Matt Metzler
 -- 
--- Create Date: 06/02/2015 12:28:48 PM
--- Design Name: 
--- Module Name: InstructionBuffer - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Create Date: 	05/27/2015 03:43:05 PM
+-- Design Name: 	Final Project
+-- Module Name: 	InstructionBuffer - Behavioral
+-- Project Name: 	MyRISC
+-- Target Devices: 	Xilinx Arctix7 FPGA on Digilent BASYS3 project board
+-- Tool Versions: 	Xilinx Vivado
 -- Description: 
 -- 
 -- Dependencies: 
