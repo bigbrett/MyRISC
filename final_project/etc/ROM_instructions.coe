@@ -5,37 +5,55 @@
 ;   NOP	   |   0000   |  No operation	|
 ;   LDR	   |   0001   |  Load Direct    | Ra <= M[d]
 ;   STR    |   0010   |  Store Direct   | M[d] <= Ra 
-;   MOV    |   0011   |  Move 		| Ra <= Rb
+;   MOV    |   0011   |  Move 			| Ra <= Rb
 ;   LDC    |   0100   |  Load Constant  | Ra <= d
-;   ADD    |   0101   |  Add 		| Ra <= Rb + Rc
-;   SUB    |   0110   |  Subtract 	| Ra <= Rb - Rc
-;   JZ     |   0111   |  Jump if Zero   | if(Ra=0) then Pc<=Pc+d+1
-;   JD     |   1000   |  Jump Direct 	| Pc <= d
+;   ADD    |   0101   |  Add 			| Ra <= Rb + Rc
+;   SUB    |   0110   |  Subtract 		| Ra <= Rb - Rc
+;   BZ     |   0111   |  Jump if Zero   | if(Ra=0) then Pc<=Pc+d+1
+;   BD     |   1000   |  Jump Direct 	| Pc <= d
+;	BL 	   |   1001   |	 Branch w link  | LR <= PC and PC <= d
+;	LIN    |   1010   |  Load Indirect  | Ra <= M[Rc]
+;	SIN	   |   1011   |  Store Indirect | M[Rc] <= Rb
+;   PSH    |   1100   |  Push Registers |
+;   POP    |   1101   |  Pop Registers  |
 ;-------------------------------------------------------------------
 ; 16-bit instruction format: x"XXXX"
 ; 	<Opcode> <Ra> <Rb> <Rc>
-; 	<Opcode> <Ra> <   d   >      
+; 	<Opcode> <Ra> <   d   >
+;	<Opcode> < Registers  >    
 ;-------------------------------------------------------------------
 ; Example Commands: 
-;	LDC r1, x"6"
-;	LDC r2, x"3"
-;	JZ  r2, x"4" 
-;	ADD r3, r2, r1
-; 	STR r3, M[00000001]
-; 	STR r2, M[00000010]
-; 	LDR r1, M[00000010]
-; 	SUB r3, r2, r1
-;	JZ  r3, x"2"
-; 	ADD r2, r1, r3
-; 	LDC r4, x"5"
-;	LDC r4, x"A"
-;	LDC r0, x"5"
-;	LDC r1, x"1"
-; 	SUB r0, r0, r1
-;	JZ  r0, 1
-;	JD  0, 14
-; 	NOP 0, 0
-;	MOV r2, r1
+;0  /0		LDC r1, x"6"
+;1  /1		LDC r2, x"3"
+;2  /2		JZ  r2, x"4" 
+;3  /3		ADD r3, r2, r1
+;4  /4 		STR r3, M[00000001]
+;5  /5 		STR r2, M[00000010]
+;6  /6 		LDR r1, M[00000010]
+;7  /7 		SUB r3, r2, r1
+;8  /8		JZ  r3, x"2"
+;9  /9 		ADD r2, r1, r3
+;10 /A		LDC r4, x"5"
+;11 /B		LDC r4, x"A"
+;12 /C		LDC r0, x"5"
+;13 /D		LDC r1, x"1"
+;14 /E		SUB r0, r0, r1
+;15 /F		JZ  r0, x"1"
+;16 /10		JD  0, 14
+;17 /11		NOP 0, 0
+;18 /12		MOV r2, r1
+;19 /13		LIN r3, M[r1]
+;20 /14		SIN r1, M[r3]
+;21 /15		LDR r0, M[00001001]
+;22 /16		PSH [000000010101]
+;23 /17		LDR r5, M[100]
+;24 /18		LDR r6, M[101]
+;25 /19		LDR r7, M[102]
+;26 /1A		LDC r0, x"0"
+;27 /1B		LDC r2, x"0"
+;28 /1C		LDC r4, x"0"
+;29 /1D		POP [000000010101]
+;
 ;----------------------------
 ;----------------------------
 ;BEGIN 
@@ -60,4 +78,15 @@ MEMORY_INITIALIZATION_VECTOR=
 7001,
 800E,
 0000,
-3210;
+3210,
+A301,
+B013,
+1009,
+C015,
+1564,
+1665,
+1766,
+4000,
+4200,
+4400,
+D015;

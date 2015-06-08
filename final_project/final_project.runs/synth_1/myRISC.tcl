@@ -3,8 +3,8 @@
 # 
 
 set_param gui.test TreeTableDev
+set_param xicom.use_bs_reader 1
 debug::add_scope template.lib 1
-set_msg_config -id {Common-41} -limit 4294967295
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 
@@ -15,15 +15,22 @@ set_property webtalk.parent_dir P:/15spring/engs128/workspace/Brett_and_Matt/fin
 set_property parent.project_path P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-add_files p:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/etc/ROM_instructions.coe
-add_files -quiet P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/instruction_ROM_synth_1/instruction_ROM.dcp
-set_property used_in_implementation false [get_files P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/instruction_ROM_synth_1/instruction_ROM.dcp]
+add_files P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/etc/ROM_instructions.coe
 add_files -quiet P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/BRAM_synth_1/BRAM.dcp
 set_property used_in_implementation false [get_files P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/BRAM_synth_1/BRAM.dcp]
+add_files -quiet P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/instruction_BRAM_synth_1/instruction_BRAM.dcp
+set_property used_in_implementation false [get_files P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/instruction_BRAM_synth_1/instruction_BRAM.dcp]
 read_vhdl -library xil_defaultlib {
   P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/ControlUnit.vhd
   P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/Datapath.vhd
   P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/myRISC.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/imports/Lab1/SerialRx.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/InstructionBuffer.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/imports/Downloads/debounce.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/Monopulse.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/imports/imports/mux7seg.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/imports/imports/SerialTx.vhd
+  P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/new/errorgen.vhd
 }
 read_xdc P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/constrs_1/imports/Lab1/Basys3_Master.xdc
 set_property used_in_implementation false [get_files P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/constrs_1/imports/Lab1/Basys3_Master.xdc]

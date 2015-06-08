@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="BRAM_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1432853773">
-  <File Type="RUN-CONSTRS" Name="$PDATADIR/runs/BRAM_synth_1/constrs_in.xml"/>
   <File Type="RDS-DCP" Name="BRAM.dcp"/>
-  <File Type="RUN-SRCS" Name="$PDATADIR/runs/BRAM_synth_1/sources.xml"/>
+  <File Type="RUN-CONSTRS" Name="$PDATADIR/runs/BRAM_synth_1/constrs_in.xml"/>
   <File Type="RDS-UTIL-PB" Name="BRAM_utilization_synth.pb"/>
-  <File Type="RUN-STRAT" Name="$PDATADIR/runs/BRAM_synth_1/BRAM_synth_1.psg"/>
-  <File Type="PA-TCL" Name="BRAM.tcl"/>
+  <File Type="RUN-SRCS" Name="$PDATADIR/runs/BRAM_synth_1/sources.xml"/>
   <File Type="RDS-PROPCONSTRS" Name="BRAM_drc_synth.rpt"/>
+  <File Type="PA-TCL" Name="BRAM.tcl"/>
+  <File Type="RUN-STRAT" Name="$PDATADIR/runs/BRAM_synth_1/BRAM_synth_1.psg"/>
   <File Type="RDS-RDS" Name="BRAM.vds"/>
   <File Type="RDS-UTIL" Name="BRAM_utilization_synth.rpt"/>
   <File Type="VDS-TIMINGSUMMARY" Name="BRAM_timing_summary_synth.rpt"/>

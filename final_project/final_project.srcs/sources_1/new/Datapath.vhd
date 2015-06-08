@@ -29,19 +29,23 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Datapath is
-Port ( clk 					: in STD_LOGIC;
-	   I_RF_M_data 			: in STD_LOGIC_VECTOR (15 downto 0);	-- data from BRAM into datapath
-	   I_RF_IR_data 		: in STD_LOGIC_VECTOR (7 downto 0);		-- Bottom 8 bits from the instruction register (for load constant)
-	   I_RF_Wreg_addr 		: in STD_LOGIC_VECTOR (3 downto 0);		-- Address of register to be written to (Wreg)
-	   I_RF_Wreg_wr 		: in STD_LOGIC;							-- write enable for write register (Wreg)
-	   I_RF_Wreg_sel 		: in STD_LOGIC_VECTOR (1 downto 0);		-- Mux select for inputs to register file
-	   I_RF_Preg_addr 		: in STD_LOGIC_VECTOR (3 downto 0);		-- Address of primary read register (Preg)
-	   I_RF_Preg_rd 		: in STD_LOGIC;							-- read enable for Preg
-	   I_RF_Qreg_addr 		: in STD_LOGIC_VECTOR (3 downto 0); 	-- Address of secondary read register (Qreg - only used for arithmetic functions)
-	   I_RF_Qreg_rd 		: in STD_LOGIC; 						-- read enable for Qreg
-	   I_ALU_sel 			: in STD_LOGIC_VECTOR (1 downto 0); 	-- ALU MUX: 00=>Preg pass through, 01=>Preg+Qreg, 10=>Preg-Qreg
-	   Q_M_data				: out STD_LOGIC_VECTOR (15 downto 0);	-- data from datapath into BRAM 
-	   Q_RF_Preg_isZero 	: out STD_LOGIC);						-- flag indicating Preg is zero (used for jump if zero) 
+Port ( clk 					: in std_logic;
+	   I_RF_M_data 			: in std_logic_vector (15 downto 0);	-- data from BRAM into datapath
+	   I_RF_IR_data 		: in std_logic_vector (7 downto 0);		-- Bottom 8 bits from the instruction register (for load constant)
+	   I_RF_Wreg_addr 		: in std_logic_vector (3 downto 0);		-- Address of register to be written to (Wreg)
+	   I_RF_Wreg_wr 		: in std_logic;							-- write enable for write register (Wreg)
+	   I_RF_Wreg_sel 		: in std_logic_vector (1 downto 0);		-- Mux select for inputs to register file
+	   I_RF_Preg_addr 		: in std_logic_vector (3 downto 0);		-- Address of primary read register (Preg)
+	   I_RF_Preg_rd 		: in std_logic;							-- read enable for Preg
+	   I_RF_Qreg_addr 		: in std_logic_vector (3 downto 0); 	-- Address of secondary read register (Qreg - only used for arithmetic functions)
+	   I_RF_Qreg_rd 		: in std_logic; 						-- read enable for Qreg
+	   I_ALU_sel 			: in std_logic_vector (1 downto 0); 	-- ALU MUX: 00=>Preg pass through, 01=>Preg+Qreg, 10=>Preg-Qreg
+	   I_reg_sel			: in std_logic_vector (3 downto 0);		-- Select which register to display
+	   Q_M_data				: out std_logic_vector (15 downto 0);	-- data from datapath into BRAM 
+	   Q_RF_Preg_isZero 	: out std_logic;						-- flag indicating Preg is zero (used for jump if zero)
+	   Q_M_addr				: out std_logic_vector (7 downto 0); 	-- Memory address for inderect access
+	   Q_reg_out			: out std_logic_vector (15 downto 0)	-- register output for displaying
+	   );
 end Datapath;
 
 architecture Behavioral of Datapath is
@@ -57,6 +61,9 @@ architecture Behavioral of Datapath is
 	signal L_RF_Wreg_data	: std_logic_vector(15 downto 0) := x"0000";
 	
 begin
+
+--Select register to display
+Q_reg_out <= L_RF_Register(to_integer(unsigned(I_reg_sel)));
 
 WregDataMux: process(I_RF_IR_data, I_RF_M_data, L_ALU_data, I_RF_Wreg_sel)
 begin
@@ -117,5 +124,6 @@ Q_RF_Preg_isZero <= '1' when L_RF_Preg_data = x"0000" else '0';
 
 -- Data written to memory always comes from Preg
 Q_M_data <= std_logic_vector(L_RF_Preg_data);
+Q_M_addr <= std_logic_vector(L_RF_Qreg_data(7 downto 0));
 
 end Behavioral;
