@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------
--- Class: 			ENGS 128 15S
+-- Class:			ENGS 128 15S
 -- Engineer: 		Brett Nicholas and Matt Metzler
 -- 
 -- Create Date: 	05/27/2015 03:43:05 PM
