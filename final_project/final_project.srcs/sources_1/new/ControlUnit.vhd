@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Class: 			ENGS 128 15S
+-- Engineer: 		Brett Nicholas and Matt Metzler
 -- 
--- Create Date: 05/27/2015 04:02:53 PM
--- Design Name: 
--- Module Name: ControlUnit - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Create Date: 	05/27/2015 03:43:05 PM
+-- Design Name: 	Final Project
+-- Module Name: 	ControlUnit - Behavioral
+-- Project Name: 	MyRISC
+-- Target Devices: 	Xilinx Arctix7 FPGA on Digilent BASYS3 project board
+-- Tool Versions: 	Xilinx Vivado
 -- Description: 
 -- 
 -- Dependencies: 
