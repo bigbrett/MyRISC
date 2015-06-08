@@ -1,8 +1,0 @@
-Vivado Simulator 2014.4
-Time resolution is 1 ps
-Note: Block Memory Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior.
-Time: 1295245 ns  Iteration: 1  Process: /myRISC_TB/uut/Instruction_BRAM_X/U0/native_mem_module/mem_module/line__3411  File: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/ip/BRAM/blk_mem_gen_v8_2/simulation/blk_mem_gen_v8_2.vhd
-Note: Block Memory Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior.
-Time: 42740605 ns  Iteration: 1  Process: /myRISC_TB/uut/BRAM_M/U0/native_mem_module/mem_module/line__3411  File: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/ip/BRAM/blk_mem_gen_v8_2/simulation/blk_mem_gen_v8_2.vhd
-Note: Block Memory Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior.
-Time: 1295245 ns  Iteration: 1  Process: /myRISC_TB/uut/Instruction_BRAM_X/U0/native_mem_module/mem_module/line__3411  File: P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.srcs/sources_1/ip/BRAM/blk_mem_gen_v8_2/simulation/blk_mem_gen_v8_2.vhd

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="instruction_BRAM_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1433696301">
+  <File Type="RUN-CONSTRS" Name="$PDATADIR/runs/instruction_BRAM_synth_1/constrs_in.xml"/>
+  <File Type="RDS-DCP" Name="instruction_BRAM.dcp"/>
+  <File Type="RUN-SRCS" Name="$PDATADIR/runs/instruction_BRAM_synth_1/sources.xml"/>
+  <File Type="RDS-UTIL-PB" Name="instruction_BRAM_utilization_synth.pb"/>
+  <File Type="RUN-STRAT" Name="$PDATADIR/runs/instruction_BRAM_synth_1/instruction_BRAM_synth_1.psg"/>
+  <File Type="PA-TCL" Name="instruction_BRAM.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="instruction_BRAM_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="instruction_BRAM.vds"/>
+  <File Type="RDS-UTIL" Name="instruction_BRAM_utilization_synth.rpt"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="instruction_BRAM_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="instruction_BRAM_timing_summary_synth.pb"/>
+  <File Type="VDS-HWDEF" Name="instruction_BRAM.hwdef"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/instruction_BRAM">
+    <File Path="$PSRCDIR/sources_1/ip/instruction_BRAM/instruction_BRAM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="instruction_BRAM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/instruction_BRAM">
+    <File Path="$PSRCDIR/sources_1/ip/instruction_BRAM/instruction_BRAM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="instruction_BRAM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2014"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

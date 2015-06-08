@@ -1,0 +1,52 @@
+
+#########################################################################################################
+##	This is an example .gitignore file for Vivado, please treat it as an example as 
+##	it might not be complete. In addition, XAPP 1165 should be followed.
+#########################################################################################################
+#########
+#Exclude all
+#########
+*
+!*/
+!.gitignore
+!*.png
+!*.PNG
+###########################################################################
+##	VIVADO
+###########################################################################
+#########
+#Source files:
+#########
+#Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
+!*.vhd
+!*.v
+!*.bd
+!*.edif
+#########
+#IP files
+#Do NOT ignore *.xpr files
+!*.xpr
+#Include *.xml files for 2013.4 or earlier version
+!*.xml
+#########
+#Constraint files
+#########
+#Do NOT ignore *.xdc files
+!*.xdc
+#########
+#TCL - files
+#########
+!*.tcl
+#########
+#Reports
+#########
+!*.rpt
+!*.txt
+!*.vdi
+#########
+#C-files
+#########
+!*.c
+!*.h
+!*.elf
+!*.xmp

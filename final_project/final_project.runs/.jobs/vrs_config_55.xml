@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="instruction_ROM_synth_1" LaunchDir="P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/instruction_ROM_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="P:/15spring/engs128/workspace/Brett_and_Matt/final_project/final_project/final_project.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="instruction_ROM_synth_1"/>
+	</Run>
+</Runs>
+

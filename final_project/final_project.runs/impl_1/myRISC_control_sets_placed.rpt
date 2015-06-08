@@ -1,0 +1,79 @@
+Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2014.4 (win64) Build 1071353 Tue Nov 18 18:29:27 MST 2014
+| Date         : Mon Jun 08 11:48:14 2015
+| Host         : t1552 running 64-bit Service Pack 1  (build 7601)
+| Command      : report_control_sets -verbose -file myRISC_control_sets_placed.rpt
+| Design       : myRISC
+| Device       : xc7a35t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++-------------------------------------------------------------------+-------+
+|                               Status                              | Count |
++-------------------------------------------------------------------+-------+
+| Number of unique control sets                                     |    26 |
+| Minimum Number of register sites lost to control set restrictions |    46 |
++-------------------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              42 |           21 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              28 |            8 |
+| Yes          | No                    | No                     |              96 |           25 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             116 |           41 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++----------------+---------------------------------------------+---------------------------------------+------------------+----------------+
+|  Clock Signal  |                Enable Signal                |            Set/Reset Signal           | Slice Load Count | Bel Load Count |
++----------------+---------------------------------------------+---------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG | SerialRx_R/rx_shift                         | SerialRx_R/n_0_tick_ctr[9]_i_1        |                1 |              4 |
+|  clk_IBUF_BUFG | SerialTx_T/n_0_tx_ctr[3]_i_2                | SerialTx_T/out2                       |                1 |              4 |
+|  clk_IBUF_BUFG | ControlUnit_C/L_PushCount_inc               | ControlUnit_C/n_0_L_PushCount[3]_i_1  |                2 |              4 |
+|  clk_IBUF_BUFG | ControlUnit_C/n_0_current_state[4]_i_1      | I_progmode_sel_IBUF                   |                4 |              5 |
+|  clk_IBUF_BUFG | SerialTx_T/n_0_tx_reg[8]_i_1                |                                       |                2 |              7 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/n_0_L_charBuf[0][7]_i_1 | InstructionBuffer_B/L_charBuf_clr     |                2 |              8 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/n_0_L_charBuf[1][7]_i_1 | InstructionBuffer_B/L_charBuf_clr     |                1 |              8 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/n_0_L_charBuf[2][7]_i_1 | InstructionBuffer_B/L_charBuf_clr     |                3 |              8 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/n_0_L_charBuf[3][7]_i_2 | InstructionBuffer_B/L_charBuf_clr     |                3 |              8 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/O3[0]                   | InstructionBuffer_B/L_XRAM_wr_ctr_clr |                3 |              8 |
+|  clk_IBUF_BUFG | SerialRx_R/rx_output                        |                                       |                3 |              8 |
+|  clk_IBUF_BUFG | SerialRx_R/E[0]                             |                                       |                2 |              8 |
+|  clk_IBUF_BUFG | ControlUnit_C/n_0_L_PC_count[15]_i_2        | ControlUnit_C/n_0_L_PC_count[15]_i_1  |                3 |              8 |
+|  clk_IBUF_BUFG | ControlUnit_C/n_0_L_PC_count[15]_i_2        | ControlUnit_C/n_0_L_PC_count[7]_i_1   |                5 |              8 |
+|  clk_IBUF_BUFG | ControlUnit_C/n_0_L_SP_addr[7]_i_1          | ControlUnit_C/L_PC_clr                |                3 |              8 |
+|  clk_IBUF_BUFG | SerialRx_R/rx_shift                         |                                       |                2 |              9 |
+|  clk_IBUF_BUFG |                                             | SerialRx_R/n_0_tick_ctr[9]_i_1        |                3 |             10 |
+|  clk_IBUF_BUFG | ControlUnit_C/L_IR_ld                       |                                       |                5 |             16 |
+|  clk_IBUF_BUFG | ControlUnit_C/L_LR_ld                       | ControlUnit_C/L_PC_clr                |                5 |             16 |
+|  clk_IBUF_BUFG | ControlUnit_C/E[0]                          |                                       |                3 |             16 |
+|  clk_IBUF_BUFG | ControlUnit_C/O3[0]                         |                                       |                3 |             16 |
+|  clk_IBUF_BUFG | InstructionBuffer_B/L_inst_reg_en           |                                       |                5 |             16 |
+|  clk_IBUF_BUFG |                                             | Display/n_0_cdcount[0]_i_1            |                5 |             18 |
+|  clk_IBUF_BUFG | Debouncer/sel                               | Debouncer/counter_set                 |                5 |             19 |
+|  clk_IBUF_BUFG |                                             |                                       |               21 |             42 |
+|  clk_IBUF_BUFG | ControlUnit_C/I_RF_Wreg_wr                  |                                       |                9 |             72 |
++----------------+---------------------------------------------+---------------------------------------+------------------+----------------+
+
+
