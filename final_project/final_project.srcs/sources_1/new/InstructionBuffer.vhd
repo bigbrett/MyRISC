@@ -32,16 +32,16 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity InstructionBuffer is
-Port (	clk 				: in std_logic;
-		I_RX_done_tick		: in std_logic;							-- SPI conversion done tick 
-		I_RX_data 			: in std_logic_vector (7 downto 0);		-- SPI parallel data
-		I_program_en		: in std_logic; 						-- Enables programming mode (no program execution during this time)
-		Q_instruction_word 	: out std_logic_vector (15 downto 0);	-- 16-bit instruction to be stored in XRAM 
-		Q_X_addr 			: out std_logic_vector (7 downto 0);	-- XRAM write address
-		Q_X_wr_en 			: out std_logic;						-- XRAM write enable
---		Q_X_busy 			: out std_logic;						-- Instruction programming in progress flag
-		Q_error_start		: out std_logic							-- Start the error sequence
-		);
+Port (	clk 			: in std_logic;
+	I_RX_done_tick		: in std_logic;				-- SPI conversion done tick 
+	I_RX_data 		: in std_logic_vector (7 downto 0);	-- SPI parallel data
+	I_program_en		: in std_logic; 			-- Enables programming mode (no program execution during this time)
+	Q_instruction_word 	: out std_logic_vector (15 downto 0);	-- 16-bit instruction to be stored in XRAM 
+	Q_X_addr 		: out std_logic_vector (7 downto 0);	-- XRAM write address
+	Q_X_wr_en 		: out std_logic;			-- XRAM write enable
+--	Q_X_busy 		  : out std_logic;			  -- Instruction programming in progress flag
+	Q_error_start		: out std_logic				-- Start the error sequence
+	);
 end InstructionBuffer;
 
 architecture Behavioral of InstructionBuffer is
@@ -52,15 +52,15 @@ function ascii2hex (a: std_logic_vector(7 downto 0)) return std_logic_vector is
 begin
 	case a is 
 		when x"30" => tmp := x"0"; -- 0
-		when x"31" => tmp := x"1";	-- 1
-		when x"32" => tmp := x"2";	-- 2
+		when x"31" => tmp := x"1";-- 1
+		when x"32" => tmp := x"2";-- 2
 		when x"33" => tmp := x"3"; -- 3
-		when x"34" => tmp := x"4";	-- 4
-		when x"35" => tmp := x"5";	-- 5
-		when x"36" => tmp := x"6";	-- 6
-		when x"37" => tmp := x"7";	-- 7
-		when x"38" => tmp := x"8";	-- 8
-		when x"39" => tmp := x"9";	-- 9
+		when x"34" => tmp := x"4";-- 4
+		when x"35" => tmp := x"5";-- 5
+		when x"36" => tmp := x"6";-- 6
+		when x"37" => tmp := x"7";-- 7
+		when x"38" => tmp := x"8";-- 8
+		when x"39" => tmp := x"9";-- 9
 		when x"61" => tmp := x"a"; -- a
 		when x"62" => tmp := x"b"; -- b
 		when x"63" => tmp := x"c"; -- c
@@ -70,16 +70,16 @@ begin
 		when others => tmp := x"0";
 	end case;
 	return tmp;
-end	ascii2hex;
+end ascii2hex;
 	
-	-- ASCII character constants 
-	constant NUL			: std_logic_vector (7 downto 0) := x"00";
+-- ASCII character constants 
+    constant NUL			: std_logic_vector (7 downto 0) := x"00";
     constant CR				: std_logic_vector (7 downto 0) := x"0d";
     constant BS				: std_logic_vector (7 downto 0) := x"08";
 
     
 	-- character buffer shift register file 
-	constant iCHARBUF_DEPTH		: integer := 4; 		-- max = 16 characters deep 
+    constant iCHARBUF_DEPTH		: integer := 4; 		-- max = 16 characters deep 
     constant iCHARBUF_WIDTH		: integer := 8;			-- character = 8 bits
     type regfile_type is array(iCHARBUF_DEPTH-1 downto 0) of std_logic_vector(iCHARBUF_WIDTH-1 downto 0);
 	signal L_charBuf			: regfile_type := (others => NUL); -- character buffer shift register file
